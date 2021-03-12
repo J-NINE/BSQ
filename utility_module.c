@@ -98,10 +98,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
         return (NULL);
     	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
         return (ft_malloc_error(tab));
-    	i = 0;
+    	i = -1;
     	next_str = (char *)s;
     	next_str_len = 0;
-    	while (i < nb_strs)
+    	while (++i < nb_strs)
     	{
     		ft_get_next_str(&next_str, &next_str_len, c);
         //각 행의 길이가 같은지 확인 
@@ -113,7 +113,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
         if (!(tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1))))
     			return (ft_malloc_error(tab));
     		ft_strlcpy(tab[i], next_str, next_str_len + 1);
-    		i++;
     	}
     	tab[i] = NULL;
     	return (tab);

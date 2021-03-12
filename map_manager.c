@@ -91,6 +91,13 @@ int map_maker(int fd, t_map *map)
     return (0);
   if (!is_map_valid(map))
     return (0);
+  int i = -1;
+  while (++i < map->row)
+    printf("%s\n", map->arr[i]);
+  printf("row: %d\n", map->row);
+  printf("empty: %c\n", map->setting[0]);
+  printf("barrier: %c\n", map->setting[1]);
+  printf("box: %c\n", map->setting[2]);
   free(buf);
 	return 1;
 }
