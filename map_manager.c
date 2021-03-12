@@ -58,9 +58,7 @@ int	put_mapsetting(t_map *map, char* temp)
   map->setting[0] = temp[1];
   map->setting[1] = temp[2];
   map->setting[2] = temp[3];
-  
-  printf("Map Settings: %d%c%c%c\n", map->row, map->setting[0], map->setting[1], map->setting[2]);
-	return (1);	
+	return ((map->row >= 0 && map->row <= 9) ? 1 : 0);	
 }
 
 int map_maker(int fd, t_map *map)
