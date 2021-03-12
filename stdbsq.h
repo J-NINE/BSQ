@@ -19,7 +19,7 @@ void print_error();
 void ultimate_printer(t_map *map, t_box *box);
 
 //utility_module.c
-int ft_split(char *buf, char **arr, char c);
+ char				**ft_split(char const *s, char c);
 int ft_strlen(char *str);
 
 #endif // !stdbsq.h

@@ -56,6 +56,7 @@ int map_maker(int fd, t_map *map)
 	char *buf;
 	char temp[4];
 	int index;
+  int i;
 	
 	buf = malloc(sizeof(char) * 8124);
 	index = -1;
@@ -79,11 +80,16 @@ int map_maker(int fd, t_map *map)
   {
     index++;
   }
-  printf("\n%s\n", buf);
+  //printf("\n%s\n", buf);
 
   //parse buf to map->**arr
-  if (!(ft_split(buf, map->arr, '\n')))
+  map->arr = ft_split(buf, '\n');
+  if (map->arr == NULL)
     return (0);
+  //printf("%s\n", map->arr[0]);
+  i = 0;
+  while (++i < map->row)
+    printf("%s\n", map->arr[i]);
 	free(buf);
 	return 1;
 }
