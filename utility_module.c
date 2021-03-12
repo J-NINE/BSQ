@@ -81,7 +81,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
     	}
     }
     
-    char				**ft_split(char const *s, char c)
+    char				**ft_split(char const *s, char c, t_map *map)
     {
     	char			**tab;
     	char			*next_str;
@@ -93,6 +93,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
     	if (!s)
     		return (NULL);
     	nb_strs = ft_get_nb_strs(s, c);
+      //row 검사
+      if (nb_strs != map->row)
+        return (NULL);
     	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
         return (ft_malloc_error(tab));
     	i = 0;

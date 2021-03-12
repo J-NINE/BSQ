@@ -86,7 +86,7 @@ int map_maker(int fd, t_map *map)
 	}
   while (read(fd, buf, 8124) > 0)
     index++;
-  map->arr = ft_split(buf, '\n');
+  map->arr = ft_split(buf, '\n', map);
   if (map->arr == NULL)
     return (0);
   if (!is_map_valid(map))
@@ -94,4 +94,3 @@ int map_maker(int fd, t_map *map)
   free(buf);
 	return 1;
 }
-
