@@ -83,7 +83,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
     
     char				**ft_split(char const *s, char c, t_map *map)
     {
-    	char			**tab;
     	char			*next_str;
     	unsigned int	next_str_len;
       unsigned int prev_str_len;
@@ -92,12 +91,11 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
     
     	if (!s)
     		return (NULL);
-    	nb_strs = ft_get_nb_strs(s, c);
       //row 검사
-      if (nb_strs != map->row)
+      if ((nb_strs = ft_get_nb_strs(s, c)) != map->row)
         return (NULL);
-    	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
-        return (ft_malloc_error(tab));
+    	if (!(map->arr = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
+        return (ft_malloc_error(map->arr));
     	i = -1;
     	next_str = (char *)s;
     	next_str_len = 0;
@@ -106,16 +104,16 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
     		ft_get_next_str(&next_str, &next_str_len, c);
         //각 행의 길이가 같은지 확인 
         if (i == 0)
-          prev_str_len = next_str_len;
+          map->col = next_str_len;
         else
-          if (prev_str_len != next_str_len)
+          if (map->col != next_str_len)
             return (NULL);   		
-        if (!(tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1))))
-    			return (ft_malloc_error(tab));
-    		ft_strlcpy(tab[i], next_str, next_str_len + 1);
+        if (!(map->arr[i] = (char *)malloc(sizeof(char) * (next_str_len + 1))))
+    			return (ft_malloc_error(map->arr));
+    		ft_strlcpy(map->arr[i], next_str, next_str_len + 1);
     	}
-    	tab[i] = NULL;
-    	return (tab);
+    	map->arr[i] = NULL;
+    	return (map->arr);
     }
     
 int ft_strlen(char *str)

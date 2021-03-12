@@ -15,6 +15,7 @@ void bsq_starter(char *file)
 		print_error();
 		exit(1);
 	}
+  
 	//solution(map) here
 	close(fd);
 	//free_map(map);

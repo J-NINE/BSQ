@@ -16,15 +16,14 @@ int	is_valid_char(char *setting, char c)
 int is_map_valid(t_map *map)
 {
   int i; 
+  int j;
 
   i = -1;
-  while (++i < map->row)
+  while (++i < 0)
   {
 
-  }
 
-  //모든 글자가 setting에 있는 애인지 검사
-  //각 row의 크기가 같고, 전체 row수가 map->row 와 같은지
+  }
   return (1);
 }
 
@@ -69,7 +68,7 @@ int map_maker(int fd, t_map *map)
 	char *buf;
 	char temp[4];
 	int index;
-	
+
   buf = malloc(sizeof(char) * 8124);
 	index = -1;
   while ((read(fd, buf, 1) > 0) && (++index < 4))
@@ -86,18 +85,11 @@ int map_maker(int fd, t_map *map)
 	}
   while (read(fd, buf, 8124) > 0)
     index++;
-  map->arr = ft_split(buf, '\n', map);
-  if (map->arr == NULL)
+  if ((ft_split(buf, '\n', map)) == NULL)
     return (0);
   if (!is_map_valid(map))
     return (0);
-  int i = -1;
-  while (++i < map->row)
-    printf("%s\n", map->arr[i]);
-  printf("row: %d\n", map->row);
-  printf("empty: %c\n", map->setting[0]);
-  printf("barrier: %c\n", map->setting[1]);
-  printf("box: %c\n", map->setting[2]);
+  print_map(map);
   free(buf);
-	return 1;
+	return (1);
 }

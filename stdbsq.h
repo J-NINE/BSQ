@@ -17,6 +17,7 @@ void free_map(t_map* map);
 //printer_module
 void print_error();
 void ultimate_printer(t_map *map, t_box *box);
+void print_map(t_map *map);
 
 //utility_module.c
  char				**ft_split(char const *s, char c, t_map *map);
