@@ -2,15 +2,9 @@
 
 int	is_valid_char(char *setting, char c)
 {
-	int i;
-	int flag;
-	flag = 2;
-	i = -1;
-	while (setting[++i])
-		if (setting[i] != c){
-			flag--;
-		}
-	return flag;
+  if (setting[0] == setting[1] || setting[1] == setting[2] || setting[0] == setting[2])
+    return (0);
+  return (1);
 }
 
 int is_map_valid(t_map *map)
@@ -19,10 +13,12 @@ int is_map_valid(t_map *map)
   int j;
 
   i = -1;
-  while (++i < 0)
+  while (++i < map->row)
   {
-
-
+    j = -1;
+    while (++j < map->col)
+      if (map->arr[i][j] != map->setting[0] && map->arr[i][j] != map->setting[1] && map->arr[i][j] != map->setting[0])
+        return (0);
   }
   return (1);
 }
