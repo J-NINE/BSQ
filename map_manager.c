@@ -13,6 +13,21 @@ int	is_valid_char(char *setting, char c)
 	return flag;
 }
 
+int is_map_valid(t_map *map)
+{
+  int i; 
+
+  i = -1;
+  while (++i < map->row)
+  {
+
+  }
+
+  //모든 글자가 setting에 있는 애인지 검사
+  //각 row의 크기가 같고, 전체 row수가 map->row 와 같은지
+  return (1);
+}
+
 void free_map(t_map *map)
 {
 	int i;
@@ -31,7 +46,6 @@ int	put_mapsetting(t_map *map, char* temp)
   int j;
 
   i = -1;
-  //0-3까지 돌고, 
   while (++i < 4 && temp[i] <= 126 && temp [i] >= 32)
   {
     j = i;
@@ -41,7 +55,6 @@ int	put_mapsetting(t_map *map, char* temp)
         return (0);
     }
   }
-
   map->row = temp[0] - '0';
   map->setting[0] = temp[1];
   map->setting[1] = temp[2];
@@ -56,13 +69,10 @@ int map_maker(int fd, t_map *map)
 	char *buf;
 	char temp[4];
 	int index;
-  int i;
 	
-	buf = malloc(sizeof(char) * 8124);
+  buf = malloc(sizeof(char) * 8124);
 	index = -1;
-
-  //Setting
-	while ((read(fd, buf, 1) > 0) && (++index < 4))
+  while ((read(fd, buf, 1) > 0) && (++index < 4))
 	{
 		if (index < 4)
 		{
@@ -74,23 +84,14 @@ int map_maker(int fd, t_map *map)
       }
 		}
 	}
-
-  //put actual map to buf
   while (read(fd, buf, 8124) > 0)
-  {
     index++;
-  }
-  //printf("\n%s\n", buf);
-
-  //parse buf to map->**arr
   map->arr = ft_split(buf, '\n');
   if (map->arr == NULL)
     return (0);
-  //printf("%s\n", map->arr[0]);
-  i = 0;
-  while (++i < map->row)
-    printf("%s\n", map->arr[i]);
-	free(buf);
+  if (!is_map_valid(map))
+    return (0);
+  free(buf);
 	return 1;
 }
 
