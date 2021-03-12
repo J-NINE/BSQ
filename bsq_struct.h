@@ -16,7 +16,7 @@ typedef struct bsq_map
 	//char empty;
 	//char barrier;
 	//char box;
-	char setting[4];
+	char setting[5];
 	int row;
 	int col; 
 	char** arr;

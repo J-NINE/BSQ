@@ -5,7 +5,7 @@ void bsq_starter(char *file)
 	int fd;
 	t_map *map;
      // 파일열기
-	map = 0;
+	map = malloc(sizeof(t_map*));
     if((fd = open(file, O_RDONLY)) < 0){
        print_error();
        exit(1);
